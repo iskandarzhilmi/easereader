@@ -71,11 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   child: Text('Submit'),
                 ),
+                // SubmitButton(),
                 SizedBox(
                   height: 10,
                 ),
-                RichText(
-                  text: TextSpan(
+                SelectableText.rich(
+                  TextSpan(
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -108,4 +109,92 @@ List<TextSpan> convertToBionicText(String text) {
     spans.add(TextSpan(text: '\n')); // Add a new line character.
   }
   return spans;
+}
+
+class SubmitButton extends StatefulWidget {
+  @override
+  State<SubmitButton> createState() => _SubmitButtonState();
+}
+
+class _SubmitButtonState extends State<SubmitButton> {
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isLoading = true;
+        });
+      },
+      child: AnimatedContainer(
+        duration: Duration(seconds: 1),
+        curve: Curves.easeInOut,
+        width: _isLoading ? 50.0 : 200.0,
+        height: 50.0,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: _isLoading ? Colors.green : Colors.transparent,
+          border: Border.all(
+            color: Colors.green,
+            width: _isLoading ? 0.0 : 2.0,
+          ),
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        child: _isLoading
+            ? Icon(Icons.check, color: Colors.white)
+            : Text(
+                'Submit',
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 18.0,
+                ),
+              ),
+      ),
+    );
+  }
+}
+
+class SubmitButton2 extends StatefulWidget {
+  @override
+  _SubmitButtonState createState() => _SubmitButtonState();
+}
+
+class _SubmitButton2State extends State<SubmitButton> {
+  bool _isTapped = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isTapped = true;
+        });
+        Future.delayed(Duration(seconds: 2), () {
+          setState(() {
+            _isTapped = false;
+          });
+        });
+      },
+      child: AnimatedContainer(
+        width: _isTapped ? 80 : 200,
+        height: 50,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: _isTapped ? Colors.green : Colors.transparent,
+            width: _isTapped ? 5 : 2,
+          ),
+          color: _isTapped ? Colors.green : Colors.transparent,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        duration: Duration(milliseconds: 300),
+        child: _isTapped
+            ? Icon(
+                Icons.check,
+                color: Colors.white,
+              )
+            : null,
+      ),
+    );
+  }
 }
