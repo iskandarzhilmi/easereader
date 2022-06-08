@@ -45,7 +45,5 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-7153445339353466~7154116387</string>
 </dict>
 </plist>

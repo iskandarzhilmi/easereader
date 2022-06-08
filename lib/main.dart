@@ -1,17 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:upgrader/upgrader.dart';
 
-import 'firebase_options.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await MobileAds.instance.initialize();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,39 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final UniqueKey _formKey = UniqueKey();
   String text = '';
 
-  final BannerAdListener listener = BannerAdListener(
-    onAdLoaded: (Ad ad) => print('Ad loaded.'),
-    onAdFailedToLoad: (Ad ad, LoadAdError error) {
-      ad.dispose();
-      print('Ad failed to load: $error');
-    },
-    onAdOpened: (Ad ad) => print('Ad opened.'),
-    onAdClosed: (Ad ad) => print('Ad closed.'),
-    onAdImpression: (Ad ad) => print('Ad impression.'),
-  );
-
-  final BannerAd myBanner = BannerAd(
-    adUnitId: 'ca-app-pub-7153445339353466/5649463029',
-    size: AdSize.banner,
-    request: AdRequest(),
-    listener: BannerAdListener(),
-  );
-
-  // final AdWidget adWidget = AdWidget(ad: myBanner);
-  //
-  // final Container adContainer = Container(
-  //   alignment: Alignment.center,
-  //   child: adWidget,
-  //   width: myBanner.size.width.toDouble(),
-  //   height: myBanner.size.height.toDouble(),
-  // );
-
-  @override
-  void initState() async {
-    super.initState();
-    // await myBanner.load();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,57 +41,52 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.red,
         title: Text(widget.title),
       ),
-      body: UpgradeAlert(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Paste the text that you want to read easily',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    maxLines: null,
-                    controller: controller,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        text = controller.text;
-                      });
-                    },
-                    child: Text('Submit'),
-                  ),
-                  AdWidget(ad: myBanner),
-                  // SubmitButton(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SelectableText.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
-                      children: convertToBionicText(
-                        text,
-                      ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Paste the text that you want to read easily',
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  maxLines: null,
+                  controller: controller,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      text = controller.text;
+                    });
+                  },
+                  child: Text('Submit'),
+                ),
+                // SubmitButton(),
+                SizedBox(
+                  height: 10,
+                ),
+                SelectableText.rich(
+                  TextSpan(
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                    children: convertToBionicText(
+                      text,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
