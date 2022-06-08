@@ -32,6 +32,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   receive_sharing_intent: ^1.4.5
+  upgrader: ^4.2.0
 
 
 

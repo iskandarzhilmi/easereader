@@ -45,3 +45,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+linux/flutter/ephemeral/.plugin_symlinks/device_info_plus_linux
+linux/flutter/ephemeral/.plugin_symlinks/package_info_plus_linux
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux
+linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux
+windows/flutter/ephemeral/.plugin_symlinks/device_info_plus_windows
+windows/flutter/ephemeral/.plugin_symlinks/package_info_plus_windows
+windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows
+windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows
+windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows
