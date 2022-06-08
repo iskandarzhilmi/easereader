@@ -58,6 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Text(
                   'Paste the text that you want to read easily',
+                  style: TextStyle(
+                    color: Colors.black26,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
