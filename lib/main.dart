@@ -42,7 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Form(
@@ -51,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(
+                  height: 20,
+                ),
                 Text(
                   'Paste the text that you want to read easily',
                 ),
@@ -77,14 +82,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 10,
                 ),
                 SelectableText.rich(
+                  textAlign: TextAlign.justify,
                   TextSpan(
                     style: TextStyle(
                       color: Colors.black,
+                      fontSize: 16,
                     ),
                     children: convertToBionicText(
                       text,
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
               ],
             ),
